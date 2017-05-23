@@ -11,14 +11,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.location.LocationServices;
 
@@ -29,14 +34,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
-    protected LocationManager locationManager;
-    protected LocationListener locationListener;
-    private double latitude;
-    private double longitude;
     private int mapStyle = GoogleMap.MAP_TYPE_NORMAL;
     private GoogleApiClient mGoogleApiClient;
-    private boolean mLocationPermissionGranted;
     private LatLng currentPosition;
+    private Location mLastLocation;
+    private Marker currentLocationMarker;
+    private LocationRequest mLocationRequest;
 
 
     @Override
@@ -48,7 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API).build();
+        buildGoogleApiClient();
 
     }
 
@@ -65,50 +68,100 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(currentPosition).title("Current position"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
+            if (mLastLocation != null) {
+                currentPosition = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                MarkerOptions markerOption = new MarkerOptions();
+                markerOption.position(currentPosition);
+                markerOption.title("Current position");
+                markerOption.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-    @Override
-    public void onStart(){
-        super.onStart();
-        if (mGoogleApiClient != null) {
-            mGoogleApiClient.connect();
+                currentLocationMarker = mMap.addMarker(markerOption);
+            }
+
+            mLocationRequest = new LocationRequest();
+            mLocationRequest.setInterval(5000);
+            mLocationRequest.setFastestInterval(3000);
+            mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+
         }
+
     }
 
     @Override
-    public void onStop(){
+    public void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
+            if (mLastLocation != null) {
+                currentPosition = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                MarkerOptions markerOption = new MarkerOptions();
+                markerOption.position(currentPosition);
+                markerOption.title("Current position");
+                markerOption.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+                currentLocationMarker = mMap.addMarker(markerOption);
+            }
+
+            mLocationRequest = new LocationRequest();
+            mLocationRequest.setInterval(5000);
+            mLocationRequest.setFastestInterval(3000);
+            mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+
         }
 
     }
 
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
     @Override
     public void onConnectionSuspended(int i) {
-
+        Toast.makeText(this, "Connection suspended", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(this, "Connection failed", Toast.LENGTH_LONG).show();
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
+        if (currentLocationMarker != null)
+            currentLocationMarker.remove();
+
+        currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+        MarkerOptions marketOption = new MarkerOptions();
+        marketOption.position(currentPosition);
+        marketOption.title("You are here");
+        marketOption.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        currentLocationMarker = mMap.addMarker(marketOption);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 11));
 
     }
 }
