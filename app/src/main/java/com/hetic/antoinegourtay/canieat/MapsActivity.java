@@ -68,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 currentPosition = new LatLng(latitude,longitude);
 
                 MarkerOptions marker = new MarkerOptions();
+                marker.title("Current position");
                 marker.position(currentPosition);
 
                 //Adding the current position on the map
