@@ -1,4 +1,4 @@
-package com.hetic.antoinegourtay.canieat;
+package com.hetic.antoinegourtay.canieat.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -17,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hetic.antoinegourtay.canieat.R;
 
 import butterknife.ButterKnife;
 
