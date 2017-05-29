@@ -19,7 +19,8 @@ public class Restaurant {
     private float rating;
 
 
-    public Restaurant(){}
+    public Restaurant() {
+    }
 
     public Restaurant(int id, double latitude, double longitude, String icon, String name, boolean isOpen, String adresse, List<String> category, float rating) {
         this.id = id;

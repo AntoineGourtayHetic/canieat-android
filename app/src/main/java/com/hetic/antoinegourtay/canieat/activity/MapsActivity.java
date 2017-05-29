@@ -65,7 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 longitude = location.getLongitude();
                 Log.d(LOCATION_APP, "latitude : " + latitude + " - longitude : " + longitude);
 
-                currentPosition = new LatLng(latitude,longitude);
+                currentPosition = new LatLng(latitude, longitude);
 
                 //Creating a marker for user's position
                 MarkerOptions marker = new MarkerOptions();
@@ -148,7 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // permission was granted!
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
 
