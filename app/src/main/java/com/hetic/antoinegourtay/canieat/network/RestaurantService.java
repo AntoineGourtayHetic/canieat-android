@@ -13,7 +13,6 @@ import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,17 +40,17 @@ public class RestaurantService {
         JacksonRequest<Restaurant[]> request = new JacksonRequest<Restaurant[]>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
             @Override
             public void onResponse(Restaurant[] response, int statusCode, VolleyError error) {
-                if(restaurantListener==null) {
+                if( restaurantListener==null ) {
                     return;
                 }
 
                 //
-                if(response!=null) {
+                if(response !=null ) {
                     // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
                     restaurantListener.onRestaurantReceived(Arrays.asList(response));
                 }
 
-                if(error!=null) {
+                if(error != null) {
                     restaurantListener.onFailed();
                 }
             }
@@ -61,5 +60,6 @@ public class RestaurantService {
                 return ArrayType.construct(SimpleType.constructUnsafe(Restaurant.class), null);
             }
         });
+
     }
 }
