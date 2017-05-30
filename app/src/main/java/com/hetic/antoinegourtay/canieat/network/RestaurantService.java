@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.ArrayType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 import com.google.android.gms.maps.model.LatLng;
+import com.hetic.antoinegourtay.canieat.CanIEatApp;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
@@ -37,7 +38,9 @@ public class RestaurantService {
 
         String url = UrlBuilder.getRestaurantUrl(restaurantType);
 
-        JacksonRequest<Restaurant[]> request = new JacksonRequest<Restaurant[]>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
+        JacksonRequest<Restaurant[]> request =
+                new JacksonRequest<Restaurant[]>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
+
             @Override
             public void onResponse(Restaurant[] response, int statusCode, VolleyError error) {
                 if( restaurantListener==null ) {
@@ -60,6 +63,10 @@ public class RestaurantService {
                 return ArrayType.construct(SimpleType.constructUnsafe(Restaurant.class), null);
             }
         });
+
+        CanIEatApp.getSharedInstance()
+                .getRequestQueue()
+                .add(request);
 
     }
 }
