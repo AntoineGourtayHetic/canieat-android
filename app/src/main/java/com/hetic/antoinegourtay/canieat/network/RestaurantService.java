@@ -34,9 +34,9 @@ public class RestaurantService {
         void onFailed();
     }
 
-    public static void getRestaurant(String restaurantType, final RestaurantListener restaurantListener){
+    public static void getRestaurant(double latitude, double longitude, String restaurantType, final RestaurantListener restaurantListener){
 
-        String url = UrlBuilder.getRestaurantUrl(restaurantType);
+        String url = UrlBuilder.getRestaurantUrl(latitude, longitude,restaurantType);
 
         JacksonRequest<Restaurant[]> request =
                 new JacksonRequest<Restaurant[]>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
