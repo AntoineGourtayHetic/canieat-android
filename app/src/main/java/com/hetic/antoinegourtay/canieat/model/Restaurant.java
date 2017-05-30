@@ -1,28 +1,32 @@
 package com.hetic.antoinegourtay.canieat.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by antoinegourtay on 26/05/2017.
  */
 
-public class Restaurant {
+public class Restaurant implements Parcelable{
 
     private int id;
     private double latitude;
     private double longitude;
     private String icon;
     private String name;
-    private boolean isOpen;
+    private String isOpen;
     private String adresse;
-    private List<String> category;
+    private List category;
     private float rating;
 
 
     public Restaurant() {
     }
 
-    public Restaurant(int id, double latitude, double longitude, String icon, String name, boolean isOpen, String adresse, List<String> category, float rating) {
+    public Restaurant(int id, double latitude, double longitude, String icon, String name, String isOpen, String adresse, List<String> category, float rating) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -33,6 +37,28 @@ public class Restaurant {
         this.category = category;
         this.rating = rating;
     }
+
+    public Restaurant(Parcel in){
+        name = in.readString();
+        isOpen = in.readString();
+        adresse = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+        //category = in.readl;
+
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -54,9 +80,9 @@ public class Restaurant {
         return name;
     }
 
-    public boolean isOpen() {
+    /*public boolean isOpen() {
         return isOpen;
-    }
+    }*/
 
     public String getAdresse() {
         return adresse;
@@ -83,5 +109,19 @@ public class Restaurant {
                 ", category=" + category +
                 ", rating=" + rating +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(isOpen);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+       // dest.writeArray(category);
     }
 }
