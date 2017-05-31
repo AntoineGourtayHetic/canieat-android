@@ -64,7 +64,8 @@ public class RestaurantService {
             }
         });
 
-        CanIEatApp.getSharedInstance()
+        CanIEatApp
+                .getSharedInstance()
                 .getRequestQueue()
                 .add(request);
 

@@ -18,6 +18,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
+import com.hetic.antoinegourtay.canieat.model.Restaurant;
+import com.hetic.antoinegourtay.canieat.network.RestaurantService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -33,6 +38,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public double latitude;
     public double longitude;
     private LatLng currentPosition;
+
+    private ArrayList<Restaurant> restaurantList;
 
 
     @Override
@@ -75,6 +82,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //Adding the current position on the map
                 mMap.addMarker(marker);
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
+
+                //We get the restaurants by the API
+                RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
+                    @Override
+                    public void onRestaurantReceived(List<Restaurant> restaurants) {
+                        for (Restaurant restaurant : restaurants) {
+                            Log.d(LOCATION_APP, restaurant.getName());
+                        }
+                    }
+
+                    @Override
+                    public void onFailed() {
+
+                    }
+                });
 
             }
 
