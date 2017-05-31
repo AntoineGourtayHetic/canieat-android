@@ -88,7 +88,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onRestaurantReceived(List<Restaurant> restaurants) {
                         for (Restaurant restaurant : restaurants) {
-                            Log.d(LOCATION_APP, restaurant.getName());
+                            restaurant = new Restaurant();
+                            Log.d(LOCATION_APP, restaurant.toString());
                         }
                     }
 

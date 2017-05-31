@@ -6,20 +6,32 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by antoinegourtay on 26/05/2017.
  */
 
 public class Restaurant implements Parcelable{
 
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("lat")
     private double latitude;
+    @JsonProperty("lng")
     private double longitude;
+    @JsonProperty("icon")
     private String icon;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("open_now")
     private String isOpen;
+    @JsonProperty("vicinity")
     private String adresse;
+    @JsonProperty("types")
     private List category;
+    @JsonProperty("rating")
     private float rating;
 
 

@@ -23,12 +23,6 @@ import java.util.List;
 
 public class RestaurantService {
 
-    private static LocationManager locationManager;
-    private LocationListener locationListener;
-    private double latitude;
-    private double longitude;
-    private LatLng currentPosition;
-
     public interface RestaurantListener {
         void onRestaurantReceived(List<Restaurant> restaurant);
         void onFailed();
@@ -39,30 +33,30 @@ public class RestaurantService {
         String url = UrlBuilder.getRestaurantUrl(latitude, longitude,restaurantType);
 
         JacksonRequest<Restaurant[]> request =
-                new JacksonRequest<Restaurant[]>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
+                new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
 
-            @Override
-            public void onResponse(Restaurant[] response, int statusCode, VolleyError error) {
-                if( restaurantListener==null ) {
-                    return;
-                }
+                    @Override
+                    public void onResponse(Restaurant[] response, int statusCode, VolleyError error) {
+                        if (restaurantListener == null) {
+                            return;
+                        }
 
-                //
-                if(response !=null ) {
-                    // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
-                    restaurantListener.onRestaurantReceived(Arrays.asList(response));
-                }
+                        //
+                        if (response != null) {
+                            // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
+                            restaurantListener.onRestaurantReceived(Arrays.asList(response));
+                        }
 
-                if(error != null) {
-                    restaurantListener.onFailed();
-                }
-            }
+                        if (error != null) {
+                            restaurantListener.onFailed();
+                        }
+                    }
 
-            @Override
-            public JavaType getReturnType() {
-                return ArrayType.construct(SimpleType.constructUnsafe(Restaurant.class), null);
-            }
-        });
+                    @Override
+                    public JavaType getReturnType() {
+                        return ArrayType.construct(SimpleType.constructUnsafe(Restaurant.class), null);
+                    }
+                });
 
         CanIEatApp
                 .getSharedInstance()
