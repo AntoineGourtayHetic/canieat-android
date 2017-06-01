@@ -1,11 +1,14 @@
 package com.hetic.antoinegourtay.canieat.network;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.ArrayType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 import com.hetic.antoinegourtay.canieat.CanIEatApp;
+import com.hetic.antoinegourtay.canieat.activity.MapsActivity;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;

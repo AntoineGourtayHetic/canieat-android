@@ -2,6 +2,7 @@ package com.hetic.antoinegourtay.canieat.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +18,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
@@ -79,8 +82,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 marker.title("Current position");
                 marker.position(currentPosition);
 
-                //Adding the current position on the map
-                mMap.addMarker(marker);
+                //To show the blue dot on current location
+                mMap.setMyLocationEnabled(true);
+
+                //Animating the camera to the current position
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
 
                 //We get the restaurants by the API
@@ -141,10 +146,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
             }
         } else {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
         }
     }
 
