@@ -24,8 +24,6 @@ public class Restaurant implements Parcelable{
     private OpenningHours openning_hours;
     private float rating;
     private String vincinity;
-    private
-
 
     public Restaurant() {
     }
@@ -33,12 +31,7 @@ public class Restaurant implements Parcelable{
 
 
     public Restaurant(Parcel in){
-        name = in.readString();
-        isOpen = in.readString();
-        adresse = in.readString();
-        latitude = in.readDouble();
-        longitude = in.readDouble();
-        //category = in.readl;
+
 
     }
 
@@ -53,57 +46,6 @@ public class Restaurant implements Parcelable{
             return new Restaurant[size];
         }
     };
-
-    public int getId() {
-        return id;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    /*public boolean isOpen() {
-        return isOpen;
-    }*/
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public List<String> getCategory() {
-        return category;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "id=" + id +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", icon='" + icon + '\'' +
-                ", name='" + name + '\'' +
-                ", isOpen=" + isOpen +
-                ", adresse='" + adresse + '\'' +
-                ", category=" + category +
-                ", rating=" + rating +
-                '}';
-    }
 
 
     @Override
