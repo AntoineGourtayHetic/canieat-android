@@ -1,13 +1,23 @@
 package com.hetic.antoinegourtay.canieat.fragment;
 
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
+import com.hetic.antoinegourtay.canieat.network.RestaurantService;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +26,15 @@ public class CategoryFragment extends Fragment {
 
 
     private static final String ARGUMENT_CATEGORY = "category";
+    private GoogleMap mMap;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 102;
+    private static final String LOCATION_APP = "HappyCow";
+
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    public double latitude;
+    public double longitude;
+    private LatLng currentPosition;
 
     public static CategoryFragment newInstance(String category) {
 
@@ -43,11 +62,13 @@ public class CategoryFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        String category  = getArguments().getString(ARGUMENT_CATEGORY);
+        String category = getArguments().getString(ARGUMENT_CATEGORY);
 
-        if(category!=null) {
-
+        if (category != null) {
+            
         }
-
     }
+
 }
+
+

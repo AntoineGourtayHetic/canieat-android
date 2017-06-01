@@ -9,31 +9,28 @@ import com.hetic.antoinegourtay.canieat.fragment.CategoryFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by luca on 01/06/2017.
- */
 
 public class CategoriesAdapter extends FragmentPagerAdapter {
 
-    private List<String> categories;
+    private List<String> restaurantsTypes;
 
-    public CategoriesAdapter(FragmentManager fm, List<String> categories) {
+    public CategoriesAdapter(FragmentManager fm, List<String> restaurantTypes) {
         super(fm);
-        this.categories = new ArrayList<>(categories);
+        this.restaurantsTypes = new ArrayList<>(restaurantTypes);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return CategoryFragment.newInstance(categories.get(position));
+        return CategoryFragment.newInstance(restaurantsTypes.get(position));
     }
 
     @Override
     public int getCount() {
-        return categories.size();
+        return restaurantsTypes.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return categories.get(position);
+        return restaurantsTypes.get(position);
     }
 }

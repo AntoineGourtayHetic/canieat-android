@@ -110,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.setMyLocationEnabled(true);
 
                 //Animating the camera to the current position
-                if (onLaunch){
+                if (onLaunch) {
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
                     onLaunch = false;
                 }
@@ -140,8 +140,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onRestaurantReceived(List<Restaurant> restaurants) {
 
+                //Clear the markers on the map
                 mMap.clear();
 
+                //For each restaurant we receive in the API, we create a marker
                 for (Restaurant restaurant : restaurants) {
                     Log.d(LOCATION_APP, restaurant.toString());
 
@@ -250,11 +252,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationManager.removeUpdates(locationListener);
     }
 
-    public double getLatitude(){
+    public double getLatitude() {
         return latitude;
     }
 
-    public double getLongitude(){
+    public double getLongitude() {
         return longitude;
     }
 
