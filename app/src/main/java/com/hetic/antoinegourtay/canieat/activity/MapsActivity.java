@@ -6,10 +6,15 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TabHost;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,7 +23,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
+import com.hetic.antoinegourtay.canieat.adapter.CategoriesAdapter;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -35,6 +42,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng currentPosition;
 
 
+    @BindView(R.id.tab_layout_categories)
+    protected TabLayout categoriesTabLayout;
+
+    @BindView(R.id.view_pager_categories)
+    protected ViewPager categoriesViewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +58,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         ButterKnife.bind(this);
+
+
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getSupportFragmentManager());
+
+        categoriesViewPager.setAdapter(categoriesAdapter);
+
+
+        categoriesTabLayout.setupWithViewPager(categoriesViewPager);
+
+
+
 
 
         // Plus d'infos
