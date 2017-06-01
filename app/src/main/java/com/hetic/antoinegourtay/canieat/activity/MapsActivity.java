@@ -26,6 +26,7 @@ import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -63,8 +64,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ButterKnife.bind(this);
 
+        List<String> categories = new ArrayList<String>();
+        categories.add("vegan");
+        categories.add("vegetatien");
+        categories.add("vegefriendly");
 
-        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getSupportFragmentManager());
+
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getSupportFragmentManager(), categories);
 
         categoriesViewPager.setAdapter(categoriesAdapter);
 

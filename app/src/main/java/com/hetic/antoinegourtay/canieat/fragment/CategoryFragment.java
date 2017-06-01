@@ -14,9 +14,13 @@ import com.hetic.antoinegourtay.canieat.R;
  */
 public class CategoryFragment extends Fragment {
 
-    public static CategoryFragment newInstance() {
+
+    private static final String ARGUMENT_CATEGORY = "category";
+
+    public static CategoryFragment newInstance(String catagory) {
 
         Bundle args = new Bundle();
+        args.putString(ARGUMENT_CATEGORY, catagory);
 
         CategoryFragment fragment = new CategoryFragment();
         fragment.setArguments(args);
@@ -39,6 +43,12 @@ public class CategoryFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        // call api à partir de la catégorie
+        String category  = getArguments().getString(ARGUMENT_CATEGORY);
+
+        if(category!=null) {
+            // call api à partir de la catégorie
+
+        }
+
     }
 }
