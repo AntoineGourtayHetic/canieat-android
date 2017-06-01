@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.adapter.CategoriesAdapter;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
+import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
 
 import java.util.ArrayList;
@@ -110,15 +111,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
                     @Override
                     public void onRestaurantReceived(List<Restaurant> restaurants) {
+
+                        mMap.clear();
+
                         for (Restaurant restaurant : restaurants) {
-                            restaurant = new Restaurant();
                             Log.d(LOCATION_APP, restaurant.toString());
+
+                            RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
+
+                            MarkerOptions markerOptions = new MarkerOptions()
+                                    .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
+
+
+                            mMap.addMarker(markerOptions);
                         }
                     }
 
                     @Override
                     public void onFailed() {
-
+                        int a = 10;
                     }
                 });
 
@@ -167,8 +178,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         } else {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            long minTime = 10;
+            float minDistance = 10.0f;
+
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, minTime, minDistance, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, locationListener);
 
         }
     }

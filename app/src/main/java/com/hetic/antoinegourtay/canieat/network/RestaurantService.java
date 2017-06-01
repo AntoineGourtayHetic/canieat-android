@@ -1,19 +1,16 @@
 package com.hetic.antoinegourtay.canieat.network;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.type.ArrayType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 import com.hetic.antoinegourtay.canieat.CanIEatApp;
-import com.hetic.antoinegourtay.canieat.activity.MapsActivity;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantsResult;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +42,7 @@ public class RestaurantService {
                 if (response != null) {
                     // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
                     restaurantListener.onRestaurantReceived(Arrays.asList(response.getResults()));
-                    
+
                 }
 
                 if (error != null) {

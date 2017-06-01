@@ -7,18 +7,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class Geometry {
+public class Geometry {
 
-    private Location location;
+    private RestaurantLocation location;
 
     public Geometry() {
     }
 
-    public Location getLocation() {
+    public RestaurantLocation getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(RestaurantLocation location) {
         this.location = location;
     }
+
 }

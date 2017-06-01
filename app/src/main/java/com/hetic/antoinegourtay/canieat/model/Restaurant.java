@@ -17,19 +17,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Restaurant implements Parcelable{
 
-    private int id;
+    private String id;
     private Geometry geometry;
 
     private String name;
     private OpenningHours openning_hours;
     private float rating;
     private String vincinity;
-    private Types types;
+    private String[] types;
 
     public Restaurant() {
     }
 
-    public Restaurant(int id, Geometry geometry, String name, OpenningHours openning_hours, float rating, String vincinity, Types types) {
+    public Restaurant(String id, Geometry geometry, String name, OpenningHours openning_hours, float rating, String vincinity, String[] types) {
         this.id = id;
         this.geometry = geometry;
         this.name = name;
@@ -40,7 +40,7 @@ public class Restaurant implements Parcelable{
     }
 
     public Restaurant(Parcel in){
-        
+
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -64,5 +64,61 @@ public class Restaurant implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Geometry getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public OpenningHours getOpenning_hours() {
+        return openning_hours;
+    }
+
+    public void setOpenning_hours(OpenningHours openning_hours) {
+        this.openning_hours = openning_hours;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getVincinity() {
+        return vincinity;
+    }
+
+    public void setVincinity(String vincinity) {
+        this.vincinity = vincinity;
+    }
+
+    public String[] getTypes() {
+        return types;
+    }
+
+    public void setTypes(String[] types) {
+        this.types = types;
     }
 }
