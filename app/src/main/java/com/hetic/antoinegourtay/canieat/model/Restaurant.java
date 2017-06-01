@@ -24,15 +24,23 @@ public class Restaurant implements Parcelable{
     private OpenningHours openning_hours;
     private float rating;
     private String vincinity;
+    private Types types;
 
     public Restaurant() {
     }
 
-
+    public Restaurant(int id, Geometry geometry, String name, OpenningHours openning_hours, float rating, String vincinity, Types types) {
+        this.id = id;
+        this.geometry = geometry;
+        this.name = name;
+        this.openning_hours = openning_hours;
+        this.rating = rating;
+        this.vincinity = vincinity;
+        this.types = types;
+    }
 
     public Restaurant(Parcel in){
-
-
+        
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {

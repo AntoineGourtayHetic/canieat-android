@@ -45,6 +45,7 @@ public class RestaurantService {
                 if (response != null) {
                     // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
                     restaurantListener.onRestaurantReceived(Arrays.asList(response.getResults()));
+                    
                 }
 
                 if (error != null) {

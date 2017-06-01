@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CanIEat</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">CaniEat</string>
     <string name="enter_you_research_autocomplete_text_view">Recherche</string>
 
     <!-- TODO: Remove or change this placeholder text -->
