@@ -10,7 +10,6 @@ import com.hetic.antoinegourtay.canieat.model.RestaurantsResult;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

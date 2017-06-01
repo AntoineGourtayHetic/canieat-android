@@ -25,7 +25,6 @@ import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,8 +42,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public double latitude;
     public double longitude;
     private LatLng currentPosition;
-
-    private ArrayList<Restaurant> restaurantList;
 
 
     @BindView(R.id.tab_layout_categories)
@@ -108,6 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
 
                 //We get the restaurants by the API
+                //TODO: Change the restaurant type parametter by the chosen tab
                 RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
                     @Override
                     public void onRestaurantReceived(List<Restaurant> restaurants) {

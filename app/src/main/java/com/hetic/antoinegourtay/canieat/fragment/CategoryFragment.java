@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hetic.antoinegourtay.canieat.R;
-import com.hetic.antoinegourtay.canieat.model.Restaurant;
 
 /**
  * A simple {@link Fragment} subclass.
