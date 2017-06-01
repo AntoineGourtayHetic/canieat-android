@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.adapter.CategoriesAdapter;
+import com.hetic.antoinegourtay.canieat.model.OpenningHours;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
@@ -49,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @BindView(R.id.view_pager_categories)
     protected ViewPager categoriesViewPager;
-    private boolean onLauch = true;
+    private boolean onLaunch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +105,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.setMyLocationEnabled(true);
 
                 //Animating the camera to the current position
-                if (onLauch){
+                if (onLaunch){
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
-                    onLauch = false;
+                    onLaunch = false;
                 }
 
                 //We get the restaurants by the API
@@ -121,6 +122,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Log.d(LOCATION_APP, restaurant.toString());
 
                             RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
+                            String name = restaurant.getName();
+                            OpenningHours openningHours = restaurant.getOpenning_hours();
+                            float rating = restaurant.getRating();
+                            String adresse = restaurant.getVincinity();
 
                             MarkerOptions markerOptions = new MarkerOptions()
                                     .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
