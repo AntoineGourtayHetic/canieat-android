@@ -15,23 +15,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Restaurant implements Parcelable{
 
-    @JsonProperty("id")
     private int id;
-    @JsonProperty("lat")
     private double latitude;
-    @JsonProperty("lng")
     private double longitude;
-    @JsonProperty("icon")
     private String icon;
-    @JsonProperty("name")
     private String name;
-    @JsonProperty("open_now")
     private String isOpen;
-    @JsonProperty("vicinity")
     private String adresse;
-    @JsonProperty("types")
     private List category;
-    @JsonProperty("rating")
     private float rating;
 
 
@@ -39,6 +30,7 @@ public class Restaurant implements Parcelable{
     }
 
     public Restaurant(int id, double latitude, double longitude, String icon, String name, String isOpen, String adresse, List<String> category, float rating) {
+        super();
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
