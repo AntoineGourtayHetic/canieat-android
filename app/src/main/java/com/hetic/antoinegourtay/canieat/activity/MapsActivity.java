@@ -12,9 +12,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TabHost;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +21,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.adapter.CategoriesAdapter;
+import com.hetic.antoinegourtay.canieat.model.Restaurant;
+import com.hetic.antoinegourtay.canieat.network.RestaurantService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +42,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public double latitude;
     public double longitude;
     private LatLng currentPosition;
+
+    private ArrayList<Restaurant> restaurantList;
 
 
     @BindView(R.id.tab_layout_categories)
@@ -96,9 +100,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 marker.title("Current position");
                 marker.position(currentPosition);
 
-                //Adding the current position on the map
-                mMap.addMarker(marker);
+                //To show the blue dot on current location
+                mMap.setMyLocationEnabled(true);
+
+                //Animating the camera to the current position
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
+
+                //We get the restaurants by the API
+                RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
+                    @Override
+                    public void onRestaurantReceived(List<Restaurant> restaurants) {
+                        for (Restaurant restaurant : restaurants) {
+                            restaurant = new Restaurant();
+                            Log.d(LOCATION_APP, restaurant.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailed() {
+
+                    }
+                });
 
             }
 
@@ -142,10 +164,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
             }
         } else {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
         }
     }
 

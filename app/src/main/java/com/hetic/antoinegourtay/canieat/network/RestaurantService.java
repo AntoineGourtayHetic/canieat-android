@@ -1,16 +1,16 @@
 package com.hetic.antoinegourtay.canieat.network;
 
-import android.location.LocationListener;
-import android.location.LocationManager;
-
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.ArrayType;
 import com.fasterxml.jackson.databind.type.SimpleType;
-import com.google.android.gms.maps.model.LatLng;
 import com.hetic.antoinegourtay.canieat.CanIEatApp;
+import com.hetic.antoinegourtay.canieat.activity.MapsActivity;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
+import com.hetic.antoinegourtay.canieat.model.RestaurantsResult;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
@@ -23,12 +23,6 @@ import java.util.List;
 
 public class RestaurantService {
 
-    private static LocationManager locationManager;
-    private LocationListener locationListener;
-    private double latitude;
-    private double longitude;
-    private LatLng currentPosition;
-
     public interface RestaurantListener {
         void onRestaurantReceived(List<Restaurant> restaurant);
         void onFailed();
@@ -38,33 +32,34 @@ public class RestaurantService {
 
         String url = UrlBuilder.getRestaurantUrl(latitude, longitude,restaurantType);
 
-        JacksonRequest<Restaurant[]> request =
-                new JacksonRequest<Restaurant[]>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
+        JacksonRequest<RestaurantsResult> request;
+        request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<RestaurantsResult>() {
 
             @Override
-            public void onResponse(Restaurant[] response, int statusCode, VolleyError error) {
-                if( restaurantListener==null ) {
+            public void onResponse(RestaurantsResult response, int statusCode, VolleyError error) {
+                if (restaurantListener == null) {
                     return;
                 }
 
                 //
-                if(response !=null ) {
+                if (response != null) {
                     // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
-                    restaurantListener.onRestaurantReceived(Arrays.asList(response));
+                    restaurantListener.onRestaurantReceived(Arrays.asList(response.getResults()));
                 }
 
-                if(error != null) {
+                if (error != null) {
                     restaurantListener.onFailed();
                 }
             }
 
             @Override
             public JavaType getReturnType() {
-                return ArrayType.construct(SimpleType.constructUnsafe(Restaurant.class), null);
+                return SimpleType.constructUnsafe(RestaurantsResult.class);
             }
         });
 
-        CanIEatApp.getSharedInstance()
+        CanIEatApp
+                .getSharedInstance()
                 .getRequestQueue()
                 .add(request);
 
