@@ -49,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @BindView(R.id.view_pager_categories)
     protected ViewPager categoriesViewPager;
+    private boolean onLauch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +71,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         categoriesTabLayout.setupWithViewPager(categoriesViewPager);
 
 
-
-
+        /*
+        Location manager and getting infos from with the user's current position
+         */
 
         // Plus d'infos
         // https://developer.android.com/guide/topics/location/strategies.html
@@ -102,7 +104,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.setMyLocationEnabled(true);
 
                 //Animating the camera to the current position
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
+                if (onLauch){
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
+                    onLauch = false;
+                }
 
                 //We get the restaurants by the API
                 //TODO: Change the restaurant type parametter by the chosen tab
@@ -148,6 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 provider.toString();
             }
         };
+
 
 
         if (ContextCompat.checkSelfPermission(this,
@@ -198,6 +204,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
     }
 
     @Override

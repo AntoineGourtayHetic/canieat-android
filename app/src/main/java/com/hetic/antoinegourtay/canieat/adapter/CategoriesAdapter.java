@@ -23,11 +23,11 @@ public class CategoriesAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 3;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "tab "+position;
+        return "tab "+ position;
     }
 }

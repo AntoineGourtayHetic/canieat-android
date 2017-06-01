@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class OpenningHours {
+public class OpenningHours {
     private boolean open_now;
 
     public boolean isOpen_now() {
