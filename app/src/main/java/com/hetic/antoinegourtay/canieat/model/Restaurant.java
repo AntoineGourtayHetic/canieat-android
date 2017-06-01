@@ -7,15 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by antoinegourtay on 26/05/2017.
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Restaurant implements Parcelable{
 
     private int id;
+    private Geometry geometry;
+
     private double latitude;
     private double longitude;
     private String icon;
@@ -115,6 +119,7 @@ public class Restaurant implements Parcelable{
                 '}';
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -122,10 +127,6 @@ public class Restaurant implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(isOpen);
-        dest.writeDouble(latitude);
-        dest.writeDouble(longitude);
-       // dest.writeArray(category);
+
     }
 }

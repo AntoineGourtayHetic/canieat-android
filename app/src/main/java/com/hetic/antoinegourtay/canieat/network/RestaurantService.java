@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.type.SimpleType;
 import com.hetic.antoinegourtay.canieat.CanIEatApp;
 import com.hetic.antoinegourtay.canieat.activity.MapsActivity;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
+import com.hetic.antoinegourtay.canieat.model.RestaurantsResult;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
@@ -31,11 +32,11 @@ public class RestaurantService {
 
         String url = UrlBuilder.getRestaurantUrl(latitude, longitude,restaurantType);
 
-        JacksonRequest<Restaurant[]> request;
-        request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<Restaurant[]>() {
+        JacksonRequest<RestaurantsResult> request;
+        request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<RestaurantsResult>() {
 
             @Override
-            public void onResponse(Restaurant[] response, int statusCode, VolleyError error) {
+            public void onResponse(RestaurantsResult response, int statusCode, VolleyError error) {
                 if (restaurantListener == null) {
                     return;
                 }
@@ -43,7 +44,7 @@ public class RestaurantService {
                 //
                 if (response != null) {
                     // transformation d'un tableau ([Ø]) en List<> avec Arrays.asList
-                    restaurantListener.onRestaurantReceived(Arrays.asList(response));
+                    restaurantListener.onRestaurantReceived(Arrays.asList(response.getResults()));
                 }
 
                 if (error != null) {
@@ -53,7 +54,7 @@ public class RestaurantService {
 
             @Override
             public JavaType getReturnType() {
-                return ArrayType.construct(SimpleType.constructUnsafe(Restaurant.class), null);
+                return SimpleType.constructUnsafe(RestaurantsResult.class);
             }
         });
 
