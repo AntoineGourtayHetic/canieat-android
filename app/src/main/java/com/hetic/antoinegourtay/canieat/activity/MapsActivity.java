@@ -74,7 +74,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         categoriesViewPager.setAdapter(categoriesAdapter);
 
-
         categoriesTabLayout.setupWithViewPager(categoriesViewPager);
 
 
@@ -116,37 +115,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     onLaunch = false;
                 }
 
-                //We get the restaurants by the API
-                //TODO: Change the restaurant type parametter by the chosen tab
-                RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
-                    @Override
-                    public void onRestaurantReceived(List<Restaurant> restaurants) {
-
-                        mMap.clear();
-
-                        for (Restaurant restaurant : restaurants) {
-                            Log.d(LOCATION_APP, restaurant.toString());
-
-                            RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
-                            String name = restaurant.getName();
-                            OpenningHours openningHours = restaurant.getOpenning_hours();
-                            float rating = restaurant.getRating();
-                            String adresse = restaurant.getVincinity();
-
-                            MarkerOptions markerOptions = new MarkerOptions()
-                                    .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
-
-
-                            mMap.addMarker(markerOptions);
-                        }
-                    }
-
-                    @Override
-                    public void onFailed() {
-                        int a = 10;
-                    }
-                });
-
             }
 
             @Override
@@ -165,6 +133,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
+
+        //We get the restaurants by the API
+        //TODO: Change the restaurant type parametter by the chosen tab
+        RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
+            @Override
+            public void onRestaurantReceived(List<Restaurant> restaurants) {
+
+                mMap.clear();
+
+                for (Restaurant restaurant : restaurants) {
+                    Log.d(LOCATION_APP, restaurant.toString());
+
+                    RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
+                    String name = restaurant.getName();
+                    OpenningHours openningHours = restaurant.getOpenning_hours();
+                    float rating = restaurant.getRating();
+                    String adresse = restaurant.getVincinity();
+
+                    MarkerOptions markerOptions = new MarkerOptions()
+                            .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
+
+
+                    mMap.addMarker(markerOptions);
+                }
+            }
+
+            @Override
+            public void onFailed() {
+                int a = 10;
+            }
+        });
 
 
         if (ContextCompat.checkSelfPermission(this,

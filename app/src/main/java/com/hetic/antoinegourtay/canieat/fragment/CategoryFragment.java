@@ -17,10 +17,10 @@ public class CategoryFragment extends Fragment {
 
     private static final String ARGUMENT_CATEGORY = "category";
 
-    public static CategoryFragment newInstance(String catagory) {
+    public static CategoryFragment newInstance(String category) {
 
         Bundle args = new Bundle();
-        args.putString(ARGUMENT_CATEGORY, catagory);
+        args.putString(ARGUMENT_CATEGORY, category);
 
         CategoryFragment fragment = new CategoryFragment();
         fragment.setArguments(args);
@@ -46,7 +46,6 @@ public class CategoryFragment extends Fragment {
         String category  = getArguments().getString(ARGUMENT_CATEGORY);
 
         if(category!=null) {
-            // call api à partir de la catégorie
 
         }
 
