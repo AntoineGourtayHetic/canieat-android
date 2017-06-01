@@ -20,31 +20,17 @@ public class Restaurant implements Parcelable{
     private int id;
     private Geometry geometry;
 
-    private double latitude;
-    private double longitude;
-    private String icon;
     private String name;
-    private String isOpen;
-    private String adresse;
-    private List category;
+    private OpenningHours openning_hours;
     private float rating;
+    private String vincinity;
+    private
 
 
     public Restaurant() {
     }
 
-    public Restaurant(int id, double latitude, double longitude, String icon, String name, String isOpen, String adresse, List<String> category, float rating) {
-        super();
-        this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.icon = icon;
-        this.name = name;
-        this.isOpen = isOpen;
-        this.adresse = adresse;
-        this.category = category;
-        this.rating = rating;
-    }
+
 
     public Restaurant(Parcel in){
         name = in.readString();
