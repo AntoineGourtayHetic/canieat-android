@@ -11,24 +11,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.hetic.antoinegourtay.canieat.CanIEatApp;
 import com.hetic.antoinegourtay.canieat.R;
-import com.hetic.antoinegourtay.canieat.activity.MapsActivity;
 import com.hetic.antoinegourtay.canieat.model.OpenningHours;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
 
 import java.util.List;
-import java.util.Map;
-
-import static android.content.Context.LOCATION_SERVICE;
-import static android.content.Context.TEXT_SERVICES_MANAGER_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
