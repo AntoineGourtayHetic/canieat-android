@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hetic.antoinegourtay.canieat.CanIEatApp;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
 
@@ -65,7 +66,9 @@ public class CategoryFragment extends Fragment {
         String category = getArguments().getString(ARGUMENT_CATEGORY);
 
         if (category != null) {
-            
+
+
+
         }
     }
 
