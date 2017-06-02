@@ -100,11 +100,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 currentPosition = new LatLng(latitude, longitude);
 
-                //Creating a marker for user's position
-                MarkerOptions marker = new MarkerOptions();
-                marker.title("Current position");
-                marker.position(currentPosition);
-
                 //To show the blue dot on current location
                 mMap.setMyLocationEnabled(true);
 
@@ -113,6 +108,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
                     onLaunch = false;
                 }
+
+                //TODO: Change the restaurant type parametter by the chosen tab
+                RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
+                    @Override
+                    public void onRestaurantReceived(List<Restaurant> restaurants) {
+
+                        //Clear the markers on the map
+                        mMap.clear();
+
+                        //For each restaurant we receive in the API, we create a marker
+                        for (Restaurant restaurant : restaurants) {
+                            Log.d(LOCATION_APP, restaurant.toString());
+
+                            RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
+                            String name = restaurant.getName();
+                            OpenningHours openningHours = restaurant.getOpenning_hours();
+                            float rating = restaurant.getRating();
+                            String adresse = restaurant.getVincinity();
+
+                            MarkerOptions markerOptions = new MarkerOptions()
+                                    .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
+
+
+                            mMap.addMarker(markerOptions);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed() {
+                        int a = 10;
+                    }
+                });
 
 
             }
@@ -132,41 +159,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 provider.toString();
             }
         };
-
-
-        //We get the restaurants by the API
-        //TODO: Change the restaurant type parametter by the chosen tab
-        RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
-            @Override
-            public void onRestaurantReceived(List<Restaurant> restaurants) {
-
-                //Clear the markers on the map
-                mMap.clear();
-
-                //For each restaurant we receive in the API, we create a marker
-                for (Restaurant restaurant : restaurants) {
-                    Log.d(LOCATION_APP, restaurant.toString());
-
-                    RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
-                    String name = restaurant.getName();
-                    OpenningHours openningHours = restaurant.getOpenning_hours();
-                    float rating = restaurant.getRating();
-                    String adresse = restaurant.getVincinity();
-
-                    MarkerOptions markerOptions = new MarkerOptions()
-                            .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
-
-
-                    mMap.addMarker(markerOptions);
-                }
-            }
-
-            @Override
-            public void onFailed() {
-                int a = 10;
-            }
-        });
-
 
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)

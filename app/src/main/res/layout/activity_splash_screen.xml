@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hetic.antoinegourtay.canieat.activity.SplashScreenActivity"
-    android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+    android:background="@color/happycow_splash_screen">
 
 </android.support.constraint.ConstraintLayout>
