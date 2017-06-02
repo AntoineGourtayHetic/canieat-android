@@ -1,6 +1,7 @@
 package com.hetic.antoinegourtay.canieat.fragment;
 
 
+import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -72,14 +73,11 @@ public class CategoryFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        String category = getArguments().getString(ARGUMENT_CATEGORY);
-
-        LatLng currentPosition = new LatLng(MapsActivity.getLatitude(), MapsActivity.getLongitude());
-        Log.e("CURRENTFRAGMENT", currentPosition.toString());
+        final String category = getArguments().getString(ARGUMENT_CATEGORY);
 
         if (category != null) {
 
-            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
 
             //When user location changes
@@ -92,6 +90,9 @@ public class CategoryFragment extends Fragment {
                     //Getting the position from the LocationListener
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
+
+                    LatLng currentPosition = new LatLng(latitude, longitude);
+                    Log.e("CURRENTFRAGMENT", currentPosition.toString());
 
                     RestaurantService.getRestaurant(latitude, longitude, category, new RestaurantService.RestaurantListener() {
                         @Override
@@ -109,17 +110,34 @@ public class CategoryFragment extends Fragment {
                                 System.out.println(restaurantLocation);
 
                             }
+                        }
+
+                        @Override
+                        public void onFailed() {
+
+                        }
+                    });
                 }
-            }
 
-            @Override
-            public void onFailed () {
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+                    provider.toString();
+                }
 
-            }
-        });
+                @Override
+                public void onProviderEnabled(String provider) {
+                    provider.toString();
+                }
+
+                @Override
+                public void onProviderDisabled(String provider) {
+                    provider.toString();
+                }
+
+            };
+        }
+
     }
-}
-
 }
 
 
