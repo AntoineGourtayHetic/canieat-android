@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hetic.antoinegourtay.canieat.activity.SlashScreenActivity">
+    tools:context="com.hetic.antoinegourtay.canieat.activity.SplashScreenActivity"
+    android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
 </android.support.constraint.ConstraintLayout>
