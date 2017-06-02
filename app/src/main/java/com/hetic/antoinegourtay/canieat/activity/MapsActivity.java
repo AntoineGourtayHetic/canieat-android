@@ -96,6 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //Getting the position from the LocationListener
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
+
                 Log.d(LOCATION_APP, "latitude : " + latitude + " - longitude : " + longitude);
 
                 currentPosition = new LatLng(latitude, longitude);

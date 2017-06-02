@@ -79,31 +79,46 @@ public class CategoryFragment extends Fragment {
 
         if (category != null) {
 
-            RestaurantService.getRestaurant(MapsActivity.getLatitude(), MapsActivity.getLongitude(), category, new RestaurantService.RestaurantListener() {
+            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+
+            //When user location changes
+            locationListener = new LocationListener() {
                 @Override
-                public void onRestaurantReceived(List<Restaurant> restaurants) {
-                    //For each restaurant we receive in the API, we create a marker
-                    for (Restaurant restaurant : restaurants) {
-                        Log.d(LOCATION_APP, restaurant.toString());
+                public void onLocationChanged(Location location) {
+                    mMap.clear();
+                    Log.d(LOCATION_APP, "location : " + location);
 
-                        RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
-                        String name = restaurant.getName();
-                        OpenningHours openningHours = restaurant.getOpenning_hours();
-                        float rating = restaurant.getRating();
-                        String adresse = restaurant.getVincinity();
+                    //Getting the position from the LocationListener
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
 
-                        System.out.println(restaurantLocation);
+                    RestaurantService.getRestaurant(latitude, longitude, category, new RestaurantService.RestaurantListener() {
+                        @Override
+                        public void onRestaurantReceived(List<Restaurant> restaurants) {
+                            //For each restaurant we receive in the API, we create a marker
+                            for (Restaurant restaurant : restaurants) {
+                                Log.d(LOCATION_APP, restaurant.toString());
 
-                    }
+                                RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
+                                String name = restaurant.getName();
+                                OpenningHours openningHours = restaurant.getOpenning_hours();
+                                float rating = restaurant.getRating();
+                                String adresse = restaurant.getVincinity();
+
+                                System.out.println(restaurantLocation);
+
+                            }
                 }
+            }
 
-                @Override
-                public void onFailed() {
+            @Override
+            public void onFailed () {
 
-                }
-            });
-        }
+            }
+        });
     }
+}
 
 }
 
