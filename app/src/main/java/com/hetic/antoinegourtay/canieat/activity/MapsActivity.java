@@ -41,10 +41,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private LocationManager locationManager;
     private LocationListener locationListener;
-    public double latitude;
-    public double longitude;
+    private static double latitude;
+    private static double longitude;
     private LatLng currentPosition;
-
 
     @BindView(R.id.tab_layout_categories)
     protected TabLayout categoriesTabLayout;
@@ -114,6 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
                     onLaunch = false;
                 }
+
 
             }
 
@@ -252,11 +252,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationManager.removeUpdates(locationListener);
     }
 
-    public double getLatitude() {
+    public static double getLatitude() {
         return latitude;
     }
 
-    public double getLongitude() {
+    public static double getLongitude() {
         return longitude;
     }
 
