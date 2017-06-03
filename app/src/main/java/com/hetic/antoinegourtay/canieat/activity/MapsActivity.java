@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.adapter.CategoriesAdapter;
 import com.hetic.antoinegourtay.canieat.model.OpenningHours;
+import com.hetic.antoinegourtay.canieat.model.Photo;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
@@ -130,6 +131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
                             String name = restaurant.getName();
                             OpenningHours openningHours = restaurant.getOpenning_hours();
+                            Photo photo = restaurant.getPhoto();
                             float rating = restaurant.getRating();
                             String adresse = restaurant.getVincinity();
 
@@ -259,5 +261,3 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 }
-
-
