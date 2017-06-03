@@ -65,71 +65,9 @@ public class CategoryFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        final String category = getArguments().getString(ARGUMENT_CATEGORY);
-
-        if (category != null) {
-
-            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-
-            //When user location changes
-            locationListener = new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    mMap.clear();
-                    Log.d(LOCATION_APP, "location : " + location);
-
-                    //Getting the position from the LocationListener
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-
-                    LatLng currentPosition = new LatLng(latitude, longitude);
-                    Log.e("CURRENTFRAGMENT", currentPosition.toString());
-
-                    RestaurantService.getRestaurant(latitude, longitude, category, new RestaurantService.RestaurantListener() {
-                        @Override
-                        public void onRestaurantReceived(List<Restaurant> restaurants) {
-                            //For each restaurant we receive in the API, we create a marker
-                            for (Restaurant restaurant : restaurants) {
-                                Log.d(LOCATION_APP, restaurant.toString());
-
-                                RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
-                                String name = restaurant.getName();
-                                OpenningHours openningHours = restaurant.getOpenning_hours();
-                                float rating = restaurant.getRating();
-                                String adresse = restaurant.getVincinity();
-
-                                System.out.println(restaurantLocation);
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailed() {
-
-                        }
-                    });
-                }
-
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-                    provider.toString();
-                }
-
-                @Override
-                public void onProviderEnabled(String provider) {
-                    provider.toString();
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-                    provider.toString();
-                }
-
-            };
-        }
 
     }
+
 }
 
 
