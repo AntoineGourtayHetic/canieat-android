@@ -1,6 +1,7 @@
 package com.hetic.antoinegourtay.canieat.activity;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -63,9 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ButterKnife.bind(this);
 
-        List<String> categories = new ArrayList<String>();
+        final List<String> categories = new ArrayList<String>();
         categories.add("vegan");
-        categories.add("vegetatien");
+        categories.add("vegetarien");
         categories.add("vegefriendly");
 
 
@@ -74,7 +75,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         categoriesViewPager.setAdapter(categoriesAdapter);
 
         categoriesTabLayout.setupWithViewPager(categoriesViewPager);
-
 
         /*
         Location manager and getting infos from with the user's current position
@@ -110,8 +110,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     onLaunch = false;
                 }
 
-                //TODO: Change the restaurant type parametter by the chosen tab
-                RestaurantService.getRestaurant(latitude, longitude, "vegan", new RestaurantService.RestaurantListener() {
+                int currentItemSelected = categoriesViewPager.getCurrentItem();
+
+                String restaurantType = categories.get(currentItemSelected);
+
+                Log.e(LOCATION_APP, restaurantType);
+
+                RestaurantService.getRestaurant(latitude, longitude, restaurantType, new RestaurantService.RestaurantListener() {
                     @Override
                     public void onRestaurantReceived(List<Restaurant> restaurants) {
 
