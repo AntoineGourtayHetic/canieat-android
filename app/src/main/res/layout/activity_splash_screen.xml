@@ -7,4 +7,11 @@
     tools:context="com.hetic.antoinegourtay.canieat.activity.SplashScreenActivity"
     android:background="@color/happycow_splash_screen">
 
+    <ImageView
+        android:layout_width="368dp"
+        android:layout_height="551dp"
+        android:src="@drawable/happycow_logo"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
 </android.support.constraint.ConstraintLayout>
