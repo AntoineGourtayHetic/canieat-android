@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.model.OpenningHours;
+import com.hetic.antoinegourtay.canieat.model.Photo;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
@@ -69,5 +70,3 @@ public class CategoryFragment extends Fragment {
     }
 
 }
-
-

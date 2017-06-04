@@ -22,6 +22,7 @@ public class Restaurant implements Parcelable{
 
     private String name;
     private OpenningHours openning_hours;
+    private Photo photos;
     private float rating;
     private String vincinity;
     private String[] types;
@@ -29,11 +30,12 @@ public class Restaurant implements Parcelable{
     public Restaurant() {
     }
 
-    public Restaurant(String id, Geometry geometry, String name, OpenningHours openning_hours, float rating, String vincinity, String[] types) {
+    public Restaurant(String id, Geometry geometry, String name, OpenningHours openning_hours, Photo photos, float rating, String vincinity, String[] types) {
         this.id = id;
         this.geometry = geometry;
         this.name = name;
         this.openning_hours = openning_hours;
+        this.photos = photos;
         this.rating = rating;
         this.vincinity = vincinity;
         this.types = types;
@@ -78,10 +80,6 @@ public class Restaurant implements Parcelable{
         return geometry;
     }
 
-    public void setGeometry(Geometry geometry) {
-        this.geometry = geometry;
-    }
-
     public String getName() {
         return name;
     }
@@ -96,6 +94,14 @@ public class Restaurant implements Parcelable{
 
     public void setOpenning_hours(OpenningHours openning_hours) {
         this.openning_hours = openning_hours;
+    }
+
+    public Photo getPhoto() {
+        return photos;
+    }
+
+    public void setPhoto(Photo photos) {
+        this.photos = photos;
     }
 
     public float getRating() {
