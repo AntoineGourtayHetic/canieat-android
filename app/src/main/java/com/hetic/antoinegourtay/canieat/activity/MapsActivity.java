@@ -81,9 +81,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Location manager and getting infos from with the user's current position
          */
 
-        // Plus d'infos
-        // https://developer.android.com/guide/topics/location/strategies.html
-
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
 
@@ -140,6 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                             mMap.addMarker(markerOptions);
+
                         }
                     }
 
@@ -231,7 +229,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         return;
                     }
 
-                    long minTime = 1;
+                    long minTime = 100;
                     float minDistance = 10;
 
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, minTime, minDistance, locationListener);
