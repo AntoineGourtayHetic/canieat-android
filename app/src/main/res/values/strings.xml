@@ -5,4 +5,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="faq">FAQ</string>
+    <string name="Carte">Carte</string>
+    <string name="apropos">A propos</string>
 </resources>

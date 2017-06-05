@@ -4,6 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hetic.antoinegourtay.canieat.activity.HomeActivity">
+    tools:context="com.hetic.antoinegourtay.canieat.activity.HomeActivity"
+    android:background="@color/happycow_splash_screen">
+
+    <Button
+        android:id="@+id/tofaqbutton"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        tools:layout_editor_absoluteY="123dp"
+        tools:layout_editor_absoluteX="107dp"
+        android:text="@string/faq"/>
+
+    <Button
+        android:id="@+id/tomapsbutton"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        tools:layout_editor_absoluteX="107dp"
+        android:text="@string/Carte"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tofaqbutton" />
+
+    <Button
+        android:id="@+id/toaboutbutton"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:text="@string/apropos"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tomapsbutton" />
 
 </android.support.constraint.ConstraintLayout>
