@@ -27,7 +27,7 @@ public class Recipe {
     }
 
     public String getName() {
-        
+
         return name;
     }
 
