@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,8 +23,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.adapter.CategoriesAdapter;
+import com.hetic.antoinegourtay.canieat.adapter.RecipeAdapter;
+import com.hetic.antoinegourtay.canieat.adapter.RestaurantAdapter;
 import com.hetic.antoinegourtay.canieat.model.OpenningHours;
 import com.hetic.antoinegourtay.canieat.model.Photo;
+import com.hetic.antoinegourtay.canieat.model.Recipe;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
@@ -76,6 +80,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         categoriesViewPager.setAdapter(categoriesAdapter);
 
         categoriesTabLayout.setupWithViewPager(categoriesViewPager);
+
+
+        ArrayList<Restaurant> restaurantArrayList = new ArrayList<Restaurant>();
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
+        ListView listView = (ListView) findViewById(R.id.tab_layout_categories_listview);
+
+        listView.setAdapter(restaurantAdapter);
 
         /*
         Location manager and getting infos from with the user's current position

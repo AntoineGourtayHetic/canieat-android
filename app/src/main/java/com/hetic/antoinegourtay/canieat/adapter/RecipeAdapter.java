@@ -11,7 +11,6 @@ import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.model.Recipe;
 
 import java.util.ArrayList;
-import java.util.concurrent.RecursiveAction;
 
 /**
  * Created by antoinegourtay on 06/06/2017.
