@@ -11,14 +11,14 @@ public class Recipe {
     private String name;
     private String duration;
     private String difficulty;
-    private List<String> ingredients;
+    private String ingredients;
     private String recipe;
 
     public Recipe(){
 
     }
 
-    public Recipe(String name, String duration, String difficulty, List<String> ingredients, String recipe) {
+    public Recipe(String name, String duration, String difficulty, String ingredients, String recipe) {
         this.name = name;
         this.duration = duration;
         this.difficulty = difficulty;
@@ -51,19 +51,19 @@ public class Recipe {
         this.difficulty = difficulty;
     }
 
-    public List<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public String getRecipe() {
         return recipe;
     }
 
     public void setRecipe(String recipe) {
         this.recipe = recipe;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 }
