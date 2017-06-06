@@ -3,18 +3,13 @@ package com.hetic.antoinegourtay.canieat.activity;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.hetic.antoinegourtay.canieat.R;
-import com.hetic.antoinegourtay.canieat.model.OpenningHours;
-import com.hetic.antoinegourtay.canieat.model.Photo;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
-import com.hetic.antoinegourtay.canieat.model.RestaurantLocation;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
 
 import java.util.ArrayList;

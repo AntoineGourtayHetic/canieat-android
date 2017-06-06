@@ -9,4 +9,6 @@
     <string name="Carte">Carte</string>
     <string name="apropos">A propos</string>
     <string name="receipes">Recettes</string>
+    <string name="quisommesnous">Qui sommes nous ?</string>
+    <string name="happy_cow_explaination">HappyCow est un service public permettant à n\'importe qui de trouver des restaurants vegans.</string>
 </resources>
