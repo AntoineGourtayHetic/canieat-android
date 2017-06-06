@@ -6,11 +6,14 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 import com.hetic.antoinegourtay.canieat.network.RestaurantService;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,15 @@ public class RandomRestaurantActivity extends AppCompatActivity {
     private static double longitude;
     private LatLng currentPosition;
     private String restaurantType;
+    private String name;
+    private String adresseRestaurant;
+    private boolean isOpen;
+    private float rating;
+
+    private TextView randomName;
+    private TextView randomAdress;
+    private TextView randomIsOpen;
+    private TextView randomRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +67,6 @@ public class RandomRestaurantActivity extends AppCompatActivity {
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
 
-                Log.d(LOCATION_APP, "latitude : " + latitude + " - longitude : " + longitude);
-
                 RestaurantService.getRestaurant(latitude, longitude, restaurantType, new RestaurantService.RestaurantListener() {
                     @Override
                     public void onRestaurantReceived(List<Restaurant> restaurants) {
@@ -64,9 +74,10 @@ public class RandomRestaurantActivity extends AppCompatActivity {
                         Random r = new Random();
                         int randomRestaurant = r.nextInt(0 - restaurants.size() - 1) + ( restaurants.size() -1 );
 
-                        String name = restaurants.get(randomRestaurant).getName();
-                        String adresseRestaurant = restaurants.get(randomRestaurant).getVincinity();
-                        boolean isOpen = restaurants.get(randomRestaurant).getOpenning_hours().isOpen_now();
+                        name = restaurants.get(randomRestaurant).getName();
+                        adresseRestaurant = restaurants.get(randomRestaurant).getVincinity();
+                        isOpen = restaurants.get(randomRestaurant).getOpenning_hours().isOpen_now();
+                        rating = restaurants.get(randomRestaurant).getRating();
 
                     }
 
@@ -93,5 +104,22 @@ public class RandomRestaurantActivity extends AppCompatActivity {
                 provider.toString();
             }
         };
+
+        randomName = (TextView) findViewById(R.id.random_name);
+        randomAdress = (TextView) findViewById(R.id.random_adress);
+        randomIsOpen = (TextView) findViewById(R.id.random_is_open);
+        randomRating = (TextView) findViewById(R.id.random_rating);
+
+        randomName.setText(name);
+        randomAdress.setText(adresseRestaurant);
+
+        if (isOpen) {
+            randomIsOpen.setText("Ouvert");
+        } else {
+            randomIsOpen.setText("Fermé");
+        }
+
+        randomRating.setText(Float.toString(rating));
+        
     }
 }

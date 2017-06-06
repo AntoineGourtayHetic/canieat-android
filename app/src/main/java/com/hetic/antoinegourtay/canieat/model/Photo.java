@@ -9,13 +9,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Photo {
-    private boolean photo_reference;
+    private String photo_reference;
 
-    public boolean mainPhoto() {
+    public Photo() {
+    }
+
+    public String getPhoto_reference() {
         return photo_reference;
     }
 
-    public void setPhoto(boolean photo_reference) {
+    public void setPhoto_reference(String photo_reference) {
         this.photo_reference = photo_reference;
     }
 }
