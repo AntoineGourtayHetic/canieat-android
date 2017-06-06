@@ -66,23 +66,17 @@ public class RandomRestaurantActivity extends AppCompatActivity {
                     @Override
                     public void onRestaurantReceived(List<Restaurant> restaurants) {
 
-                        //For each restaurant we receive in the API, we create a marker
-                        for (Restaurant restaurant : restaurants) {
-                            Log.d(LOCATION_APP, restaurant.toString());
+                        Random r = new Random();
+                        int randomRestaurant = r.nextInt(0 - restaurants.size() - 1) + ( restaurants.size() -1 );
 
-                            RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
-                            String name = restaurant.getName();
-                            OpenningHours openningHours = restaurant.getOpenning_hours();
-                            Photo photo = restaurant.getPhoto();
-                            float rating = restaurant.getRating();
-                            String adresse = restaurant.getVincinity();
+                        String name = restaurants.get(randomRestaurant).getName();
+                        String adresseRestaurant = restaurants.get(randomRestaurant).getVincinity();
+                        boolean isOpen = restaurants.get(randomRestaurant).getOpenning_hours().isOpen_now();
 
-                        }
                     }
 
                     @Override
                     public void onFailed() {
-                        int a = 10;
                     }
                 });
 

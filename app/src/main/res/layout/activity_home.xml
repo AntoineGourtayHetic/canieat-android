@@ -14,7 +14,7 @@
         android:text="@string/faq"
         tools:layout_editor_absoluteX="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRecettes" />
 
     <Button
         android:id="@+id/tomapsbutton"
@@ -35,7 +35,7 @@
         tools:layout_editor_absoluteX="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/tomapsbutton"
-        android:id="@+id/button2" />
+        android:id="@+id/buttonRecettes" />
 
     <Button
         android:id="@+id/toaboutbutton"
