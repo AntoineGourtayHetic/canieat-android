@@ -20,6 +20,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //TODO: Change button size to be bigger
+
         carteButton = (Button) findViewById(R.id.tomapsbutton);
         aboutButton = (Button) findViewById(R.id.toaboutbutton);
         recipesButton = (Button) findViewById(R.id.torecipes);
