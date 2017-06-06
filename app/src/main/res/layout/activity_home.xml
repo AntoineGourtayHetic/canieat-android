@@ -3,6 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:background="@color/happycow_splash_screen"
     >
 
     <Button
@@ -17,18 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/receipes" />
-
-    <Button
-        android:id="@+id/torandomrestaurant"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/discover_restaurant"/>
-
-    <Button
-        android:id="@+id/tofaqbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/faq" />
 
     <Button
         android:id="@+id/toaboutbutton"

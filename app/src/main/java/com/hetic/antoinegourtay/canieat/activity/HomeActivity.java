@@ -11,7 +11,6 @@ import com.hetic.antoinegourtay.canieat.R;
 public class HomeActivity extends AppCompatActivity {
 
 
-    private Button faqButton;
     private Button carteButton;
     private Button aboutButton;
     private Button recipesButton;
@@ -21,18 +20,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        faqButton = (Button) findViewById(R.id.tofaqbutton);
         carteButton = (Button) findViewById(R.id.tomapsbutton);
         aboutButton = (Button) findViewById(R.id.toaboutbutton);
-        recipesButton = (Button) findViewById(R.id.buttonRecettes);
-
-        faqButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, FAQActivity.class);
-                startActivity(i);
-            }
-        });
+        recipesButton = (Button) findViewById(R.id.torecipes);
 
         carteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
 
     }
