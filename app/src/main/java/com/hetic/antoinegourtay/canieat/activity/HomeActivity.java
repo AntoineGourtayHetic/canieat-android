@@ -3,6 +3,7 @@ package com.hetic.antoinegourtay.canieat.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,6 +26,13 @@ public class HomeActivity extends AppCompatActivity {
         carteButton = (Button) findViewById(R.id.tomapsbutton);
         aboutButton = (Button) findViewById(R.id.toaboutbutton);
         recipesButton = (Button) findViewById(R.id.torecipes);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
 
         carteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +58,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        carteButton.setWidth(width);
+        carteButton.setHeight(height / 4);
+
+        aboutButton.setWidth(width);
+        aboutButton.setHeight(height / 4);
+
+        recipesButton.setWidth(width);
+        recipesButton.setHeight(height / 4);
 
 
     }
