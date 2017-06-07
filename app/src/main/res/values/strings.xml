@@ -16,4 +16,6 @@
     <string name="who_are_we_title">Qui sommes-nous ?`</string>
     <string name="vegan_food">La différence est qu\'un végan, en plus d\'être végétalien, n\'utilise aucun produit d\'origine animale non seulement dans l\'alimentation mais aussi dans tous les aspects de la vie courante. Le refus de l\'exploitation animale est une notion clef du véganisme.</string>
     <string name="vegan_food_title">Qu\'est-ce que l\'alimentation vegan ?</string>
+    <string name="but_application_title">Quel est le but de cette application ?</string>
+    <string name="but_application">Cette application a pour but d\'aider les végan à trouver rapidement un restaurant proche de chez eux.</string>
 </resources>

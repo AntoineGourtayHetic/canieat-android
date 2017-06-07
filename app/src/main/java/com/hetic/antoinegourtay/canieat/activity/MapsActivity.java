@@ -82,12 +82,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         categoriesTabLayout.setupWithViewPager(categoriesViewPager);
 
 
-        ArrayList<Restaurant> restaurantArrayList = new ArrayList<Restaurant>();
-        final RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
-        ListView listView = (ListView) findViewById(R.id.tab_layout_categories_listview);
-
-        listView.setAdapter(restaurantAdapter);
-
         /*
         Location manager and getting infos from with the user's current position
          */
@@ -119,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     onLaunch = false;
                 }
 
-                int currentItemSelected = categoriesViewPager.getCurrentItem();
+                final int currentItemSelected = categoriesViewPager.getCurrentItem();
 
                 String restaurantType = categories.get(currentItemSelected);
 
@@ -144,9 +138,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             float rating = restaurant.getRating();
                             String adresse = restaurant.getVincinity();
 
-                            Restaurant restaurantForAdapter = new Restaurant(restaurant.getGeometry() , name, openningHours, rating, adresse);
-
-                            restaurantAdapter.add(restaurantForAdapter);
+                            MarkerOptions markerOptions = new MarkerOptions().position( new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
+                            mMap.addMarker(markerOptions);
 
                         }
                     }
