@@ -18,4 +18,6 @@
     <string name="vegan_food_title">Qu\'est-ce que l\'alimentation vegan ?</string>
     <string name="but_application_title">Quel est le but de cette application ?</string>
     <string name="but_application">Cette application a pour but d\'aider les végan à trouver rapidement un restaurant proche de chez eux.</string>
+    <string name="dev_title">Qui a développé l\'application</string>
+    <string name="dev">Antoine Gourtay et Luca Haenel</string>
 </resources>
