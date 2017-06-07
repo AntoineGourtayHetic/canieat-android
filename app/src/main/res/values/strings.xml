@@ -12,4 +12,6 @@
     <string name="quisommesnous">Qui sommes nous ?</string>
     <string name="happy_cow_explaination">HappyCow est un service public permettant à n\'importe qui de trouver des restaurants vegans.</string>
     <string name="discover_restaurant">Découvrir un restaurant</string>
+    <string name="who_are_we">HappyCow a été fondé en 1999 comme un service public pour aider les gens et les touristes à trouver des restaurants vegan. HappyCow est en perpétuelle évolution, et aide chaque mois des millions d\'utilisateurs à mieux manger.</string>
+    <string name="who_are_we_title">Qui sommes-nous ?`</string>
 </resources>

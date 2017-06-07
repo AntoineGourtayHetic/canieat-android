@@ -8,4 +8,26 @@
 
     <!-- TODO: Adding content -->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/who_are_we_title"
+        android:textStyle="bold"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/who_are_we"
+        android:layout_margin="5dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/who_are_we_title"
+        android:textStyle="bold"
+        android:layout_margin="5dp"/>
+
+
 </LinearLayout>
