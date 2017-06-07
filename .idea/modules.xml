@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/canieat.iml" filepath="$PROJECT_DIR$/canieat.iml" />
       <module fileurl="file://$PROJECT_DIR$/canieat-android.iml" filepath="$PROJECT_DIR$/canieat-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/happycow.iml" filepath="$PROJECT_DIR$/happycow.iml" />
     </modules>
   </component>
 </project>

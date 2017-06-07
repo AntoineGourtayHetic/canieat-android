@@ -13,6 +13,7 @@ import java.util.List;
 public class CategoriesAdapter extends FragmentPagerAdapter {
 
     private List<String> restaurantsTypes;
+    private Fragment mCurrentFragement;
 
     public CategoriesAdapter(FragmentManager fm, List<String> restaurantTypes) {
         super(fm);
@@ -32,5 +33,9 @@ public class CategoriesAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return restaurantsTypes.get(position);
+    }
+
+    public Fragment getmCurrentFragement(){
+        return mCurrentFragement;
     }
 }

@@ -38,11 +38,6 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/tab_layout_categories"/>
 
-        <ListView
-            android:id="@+id/tab_layout_categories_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tab_layout_categories" />
 
     </RelativeLayout>
 
