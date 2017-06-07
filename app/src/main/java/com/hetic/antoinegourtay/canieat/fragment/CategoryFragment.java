@@ -77,9 +77,7 @@ public class CategoryFragment extends Fragment {
         Criteria criteria = new Criteria();
         LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(criteria, true);
-
-        listView = (ListView) getView().findViewById(R.id.list_view_fragment_restaurants);
-
+        
         if (ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED

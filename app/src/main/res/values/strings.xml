@@ -20,4 +20,5 @@
     <string name="but_application">Cette application a pour but d\'aider les végan à trouver rapidement un restaurant proche de chez eux.</string>
     <string name="dev_title">Qui a développé l\'application</string>
     <string name="dev">Antoine Gourtay et Luca Haenel</string>
+    <string name="TODO">Ici devait se trouver les restaurants sous forme de card</string>
 </resources>
