@@ -83,7 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         ArrayList<Restaurant> restaurantArrayList = new ArrayList<Restaurant>();
-        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
+        final RestaurantAdapter restaurantAdapter = new RestaurantAdapter(this, restaurantArrayList);
         ListView listView = (ListView) findViewById(R.id.tab_layout_categories_listview);
 
         listView.setAdapter(restaurantAdapter);
@@ -136,6 +136,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         for (Restaurant restaurant : restaurants) {
                             Log.d(LOCATION_APP, restaurant.toString());
 
+
                             RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
                             String name = restaurant.getName();
                             OpenningHours openningHours = restaurant.getOpenning_hours();
@@ -143,11 +144,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             float rating = restaurant.getRating();
                             String adresse = restaurant.getVincinity();
 
-                            MarkerOptions markerOptions = new MarkerOptions()
-                                    .position(new LatLng(restaurantLocation.getLat(), restaurantLocation.getLng()));
+                            Restaurant restaurantForAdapter = new Restaurant(restaurant.getGeometry() , name, openningHours, rating, adresse);
 
-
-                            mMap.addMarker(markerOptions);
+                            restaurantAdapter.add(restaurantForAdapter);
 
                         }
                     }

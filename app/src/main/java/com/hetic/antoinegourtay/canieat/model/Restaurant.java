@@ -30,15 +30,12 @@ public class Restaurant implements Parcelable{
     public Restaurant() {
     }
 
-    public Restaurant(String id, Geometry geometry, String name, OpenningHours openning_hours, Photo photos, float rating, String vincinity, String[] types) {
-        this.id = id;
+    public Restaurant(Geometry geometry, String name, OpenningHours openning_hours,float rating, String vincinity) {
         this.geometry = geometry;
         this.name = name;
         this.openning_hours = openning_hours;
-        this.photos = photos;
         this.rating = rating;
         this.vincinity = vincinity;
-        this.types = types;
     }
 
     public Restaurant(Parcel in){
