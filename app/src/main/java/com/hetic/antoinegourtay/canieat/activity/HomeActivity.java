@@ -20,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        
+
         carteButton = (Button) findViewById(R.id.tomapsbutton);
         aboutButton = (Button) findViewById(R.id.toaboutbutton);
         recipesButton = (Button) findViewById(R.id.torecipes);
