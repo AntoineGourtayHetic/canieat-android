@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,6 +46,7 @@ public class CategoryFragment extends Fragment {
     private GoogleMap mMap;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 102;
     private static final String LOCATION_APP = "HappyCow";
+    private ListView listView;
 
     public static CategoryFragment newInstance(String category) {
 
@@ -75,6 +77,8 @@ public class CategoryFragment extends Fragment {
         Criteria criteria = new Criteria();
         LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(criteria, true);
+
+        listView = (ListView) getView().findViewById(R.id.list_view_fragment_restaurants);
 
         if (ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -120,12 +124,16 @@ public class CategoryFragment extends Fragment {
                     for (Restaurant restaurant : restaurants) {
                         Log.d(LOCATION_APP, restaurant.toString());
 
+
+
                         RestaurantLocation restaurantLocation = restaurant.getGeometry().getLocation();
                         String name = restaurant.getName();
                         OpenningHours openningHours = restaurant.getOpenning_hours();
                         Photo photo = restaurant.getPhoto();
                         float rating = restaurant.getRating();
                         String adresse = restaurant.getVincinity();
+
+
 
                     }
                 }
