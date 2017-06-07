@@ -109,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //Animating the camera to the current position
                 if (onLaunch) {
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 17));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 15));
                     onLaunch = false;
                 }
 

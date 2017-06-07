@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hetic.antoinegourtay.canieat.activity.SplashScreenActivity"
-    android:background="@color/happycow_splash_screen">
+    android:background="@color/violet">
 
     <ImageView
-        android:layout_width="368dp"
+        android:layout_width="208dp"
         android:layout_height="551dp"
-        android:src="@drawable/happycow_logo"
+        android:src="@drawable/logo"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"

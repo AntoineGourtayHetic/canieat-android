@@ -3,26 +3,34 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/happycow_splash_screen"
+    android:background="@color/violet"
     >
 
     <Button
         android:id="@+id/tomapsbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Carte"
-        />
+        android:text="Carte"
+        android:layout_width="258dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:textColor="@color/violet"
+        android:layout_marginTop="85dp"/>
 
     <Button
         android:id="@+id/torecipes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/receipes" />
+        android:layout_width="258dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:textColor="@color/violet"
+        android:layout_marginTop="50dp"
+        android:text="@string/receipes"/>
 
     <Button
         android:id="@+id/toaboutbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="258dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:textColor="@color/violet"
+        android:layout_marginTop="50dp"
         android:text="@string/apropos"
          />
 
