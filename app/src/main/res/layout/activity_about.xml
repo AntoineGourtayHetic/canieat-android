@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.hetic.antoinegourtay.canieat.activity.AboutActivity">
 
     <!-- TODO: Adding content -->
@@ -25,8 +26,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/who_are_we_title"
+        android:text="@string/vegan_food_title"
         android:textStyle="bold"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/vegan_food"
         android:layout_margin="5dp"/>
 
 

@@ -11,6 +11,8 @@ import com.hetic.antoinegourtay.canieat.R;
 import com.hetic.antoinegourtay.canieat.model.Recipe;
 import com.hetic.antoinegourtay.canieat.model.Restaurant;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -31,12 +33,19 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_maps_cards, parent, false);
         }
 
-        //Ici tu créées ce que tu veux selon ce que tu as mis dans le item_maps_cards
-
-       // EXEMPLE : TextView restaurantName = (TextView) convertView.findViewById(R.id.recipe_name);
+        TextView restaurantName = (TextView) convertView.findViewById(R.id.restaurant_name);
+        TextView restaurantAdresse = (TextView) convertView.findViewById(R.id.restaurant_adresse);
+        TextView restaurantIsOpen = (TextView) convertView.findViewById(R.id.restaurant_isopen);
 
         if (restaurant != null) {
-            //EXEMPLE restaurantName.setText(restaurant.getName());
+            restaurantName.setText(restaurant.getName());
+            restaurantAdresse.setText(restaurant.getVincinity());
+
+            if (restaurant.getOpenning_hours().isOpen_now()){
+                restaurantIsOpen.setText("Ouvert");
+            } else {
+                restaurantIsOpen.setText("Fermé");
+            }
         }
 
         return convertView;

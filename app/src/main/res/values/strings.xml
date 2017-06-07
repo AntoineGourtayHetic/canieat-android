@@ -9,9 +9,11 @@
     <string name="Carte">Carte</string>
     <string name="apropos">A propos</string>
     <string name="receipes">Recettes</string>
-    <string name="quisommesnous">Qui sommes nous ?</string>
+    <string name="quisommesnous">Qui sommes nous</string>
     <string name="happy_cow_explaination">HappyCow est un service public permettant à n\'importe qui de trouver des restaurants vegans.</string>
     <string name="discover_restaurant">Découvrir un restaurant</string>
     <string name="who_are_we">HappyCow a été fondé en 1999 comme un service public pour aider les gens et les touristes à trouver des restaurants vegan. HappyCow est en perpétuelle évolution, et aide chaque mois des millions d\'utilisateurs à mieux manger.</string>
     <string name="who_are_we_title">Qui sommes-nous ?`</string>
+    <string name="vegan_food">La différence est qu\'un végan, en plus d\'être végétalien, n\'utilise aucun produit d\'origine animale non seulement dans l\'alimentation mais aussi dans tous les aspects de la vie courante. Le refus de l\'exploitation animale est une notion clef du véganisme.</string>
+    <string name="vegan_food_title">Qu\'est-ce que l\'alimentation vegan ?</string>
 </resources>
